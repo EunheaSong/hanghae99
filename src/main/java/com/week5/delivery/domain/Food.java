@@ -5,17 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 public class Food {
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 

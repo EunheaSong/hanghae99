@@ -17,7 +17,5 @@ public class RestaurantDto {
 
     private int deliveryFee;
 
-    @OneToMany
-    private List<Food> food;
 
 }

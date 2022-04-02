@@ -1,6 +1,8 @@
 package com.week5.delivery.domain;
 
 
+import com.week5.delivery.dto.FoodDto;
+import com.week5.delivery.validator.FoodVaildator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,4 +25,13 @@ public class Food {
     @ManyToOne
     @JoinColumn(name = "restaurantId")
     private Restaurant restaurant;
+
+    public Food (FoodDto foodDto, Restaurant restaurant){
+        FoodVaildator.foodValidator(foodDto);
+
+        this.name = foodDto.getName();
+        this.price=foodDto.getPrice();
+        this.restaurant=restaurant;
+    }
+
 }

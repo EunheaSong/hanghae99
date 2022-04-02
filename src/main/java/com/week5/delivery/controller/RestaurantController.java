@@ -1,15 +1,14 @@
 package com.week5.delivery.controller;
 
 
+import com.week5.delivery.domain.Food;
 import com.week5.delivery.domain.Restaurant;
+import com.week5.delivery.dto.FoodDto;
 import com.week5.delivery.dto.RestaurantDto;
 import com.week5.delivery.repository.RestaurantRepository;
 import com.week5.delivery.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +29,11 @@ public class RestaurantController {
     @GetMapping("/restaurants")
     public List<Restaurant> allRestaurant(){
         return restaurantRepository.findAll();
+    }
+
+    @PostMapping("/restaurant/{restaurantId}/food/register")
+    public Long saveFood (@PathVariable Long restaurantId, @RequestBody List<FoodDto> foodDto){
+        restaurantService.findFoodname(restaurantId, foodDto);
+        return restaurantId;
     }
 }

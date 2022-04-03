@@ -5,6 +5,7 @@ import com.week5.delivery.validator.RestaurantValidator;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -24,9 +25,8 @@ public class Restaurant {
 
     private int deliveryFee;
 
-    @OneToMany
-    @JoinColumn(name = "foodId")
-    private List<Food> food;
+    @OneToMany(mappedBy = "restaurant")
+    private List<Food> foods;
 
     public Restaurant (RestaurantDto restaurantDto) {
 
@@ -35,6 +35,12 @@ public class Restaurant {
         this.name = restaurantDto.getName();
         this.minOrderPrice=restaurantDto.getMinOrderPrice();
         this.deliveryFee =restaurantDto.getDeliveryFee();
+    }
+
+    public void addFood(Food food){
+
+        food.setRestaurant(this);
+        this.foods.add(food);
     }
 
 }

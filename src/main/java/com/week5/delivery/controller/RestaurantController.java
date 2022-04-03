@@ -5,7 +5,9 @@ import com.week5.delivery.domain.Food;
 import com.week5.delivery.domain.Restaurant;
 import com.week5.delivery.dto.FoodDto;
 import com.week5.delivery.dto.RestaurantDto;
+import com.week5.delivery.repository.FoodRepository;
 import com.week5.delivery.repository.RestaurantRepository;
+import com.week5.delivery.service.FoodService;
 import com.week5.delivery.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,8 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
     private final RestaurantRepository restaurantRepository;
+    private final FoodService foodService;
+    private final FoodRepository foodRepository;
 
     @PostMapping("/restaurant/register")
     public Restaurant joinRestaurant (@RequestBody RestaurantDto restaurantDto){
@@ -32,8 +36,19 @@ public class RestaurantController {
     }
 
     @PostMapping("/restaurant/{restaurantId}/food/register")
-    public Long saveFood (@PathVariable Long restaurantId, @RequestBody List<FoodDto> foodDto){
-        restaurantService.findFoodname(restaurantId, foodDto);
-        return restaurantId;
+    public void saveFood (@PathVariable Long restaurantId, @RequestBody List<FoodDto> foodDto){
+        System.out.println("요기"+restaurantId);
+        Restaurant restaurant = restaurantService.findRestaurant(restaurantId);
+        System.out.println("현재 음식점 메뉴 수" + restaurantService.findRestaurant(restaurantId).getFoods().size());
+        restaurantService.addFoods(foodDto, restaurant);
+
+        System.out.println("저장 후 음식점 메뉴 수" + restaurantService.findRestaurant(restaurantId).getFoods().size());
+
+    }
+
+    @GetMapping("/restaurant/{restaurantId}/foods")
+    public List<Food> foodList (@PathVariable Long restaurantId){
+        System.out.println("리스트조회"+restaurantId);
+        return restaurantService.findRestaurant(restaurantId).getFoods();
     }
 }

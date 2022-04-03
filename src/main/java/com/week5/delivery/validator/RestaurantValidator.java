@@ -1,5 +1,6 @@
 package com.week5.delivery.validator;
 
+import com.week5.delivery.domain.Restaurant;
 import com.week5.delivery.dto.RestaurantDto;
 import org.springframework.stereotype.Component;
 
@@ -29,8 +30,10 @@ public class RestaurantValidator {
         }
     }
 
-    public static void checkFoodname (){
-
-    }
+//    public static void checkFoodname (Restaurant restaurant){
+//        if(restaurant.getFoods() != null){
+//
+//        }
+//    }
 
 }

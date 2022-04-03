@@ -8,13 +8,15 @@ import com.week5.delivery.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.transaction.Transactional;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final FoodRepository foodRepository;
+    private final FoodService foodService;
 
     public Restaurant findRestaurant (Long id){
         return restaurantRepository.findById(id).orElseThrow(
@@ -22,25 +24,13 @@ public class RestaurantService {
         );
     }
 
-    public Restaurant findFoodname (Long id, List<FoodDto> foodDto){
-        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("존재하지 않는 매장입니다")
-        );
-        List<Food> foods = restaurant.getFood();
-        for (Food food : foods) {
-            for (FoodDto dto : foodDto) {
-                if (food.getName().equals(dto.getName())) {
-                    throw new IllegalArgumentException("이미 등록된 메뉴입니다.");
-                }
-                Food foodadd = new Food(dto, restaurant);
-                foodRepository.save(foodadd);
-                restaurant.getFood().add(foodadd);
-            }
+    public void addFoods (List<FoodDto> foodDto,Restaurant restaurant){
+        for (FoodDto f : foodDto){
+            Food food = new Food(f,restaurant);
+            restaurant.addFood(food);
         }
-        return restaurant;
+        restaurantRepository.save(restaurant);
     }
-
-
 
 
 

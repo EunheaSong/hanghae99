@@ -30,7 +30,9 @@ public class RestaurantDto {
         this.name=restaurant.getName();
         this.minOrderPrice=restaurant.getMinOrderPrice();
         this.deliveryFee= restaurant.getMinOrderPrice();
+
         List<FoodDto> foodDtos = new ArrayList<>();
+
         for (int i=0; i< foods.size(); i++){
             FoodDto foodDto = new FoodDto();
             foodDto.setId(foods.get(i).getId());

@@ -2,10 +2,9 @@ package com.week5.delivery.domain;
 
 
 import com.week5.delivery.dto.FoodDto;
-import com.week5.delivery.validator.FoodVaildator;
+import com.week5.delivery.validator.FoodValidator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,23 +12,23 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
+@Entity //메뉴 테이블
 public class Food {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
-    private String name;
+    private String name; //메뉴 이름
 
-    private int price;
+    private int price; // 메뉴 가격
 
     @ManyToOne
-    @JoinColumn(name = "RESTAURANT_ID")
+    @JoinColumn(name = "RESTAURANT_ID")  //음식점 테이블과 조인
     private Restaurant restaurant;
 
     public Food (FoodDto foodDto, Restaurant restaurant){
-        FoodVaildator.foodValidator(foodDto, restaurant);
+        FoodValidator.foodValidator(foodDto, restaurant); // 음식에 대한 규칙을 확인해주는 메서드
         this.name = foodDto.getName();
         this.price=foodDto.getPrice();
     }

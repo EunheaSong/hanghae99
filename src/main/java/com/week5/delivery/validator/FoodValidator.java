@@ -3,18 +3,11 @@ package com.week5.delivery.validator;
 import com.week5.delivery.domain.Food;
 import com.week5.delivery.domain.Restaurant;
 import com.week5.delivery.dto.FoodDto;
-import com.week5.delivery.dto.RestaurantDto;
-import com.week5.delivery.service.RestaurantService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 
 @Component
-public class FoodVaildator {
+public class FoodValidator {
 //        - 음식점 ID 및 음식 정보 입력받아 등록
 //        1. 음식점 ID (restaurantId)
 //                1. 음식점 DB 테이블 ID

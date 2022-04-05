@@ -23,6 +23,7 @@ public class RestaurantController {
     private final FoodService foodService;
     private final FoodRepository foodRepository;
 
+    //음식점 등록하기
     @PostMapping("/restaurant/register")
     public Restaurant joinRestaurant (@RequestBody RestaurantDto restaurantDto){
         Restaurant restaurant = new Restaurant(restaurantDto);
@@ -30,11 +31,13 @@ public class RestaurantController {
         return restaurant;
     }
 
+    //음식점 조회하기
     @GetMapping("/restaurants")
     public List<Restaurant> allRestaurant(){
         return restaurantRepository.findAll();
     }
 
+    //특정 음식점에 메뉴 등록하기
     @PostMapping("/restaurant/{restaurantId}/food/register")
     public void saveFood (@PathVariable Long restaurantId, @RequestBody List<FoodDto> foodDto){
         System.out.println("요기"+restaurantId);
@@ -46,6 +49,7 @@ public class RestaurantController {
 
     }
 
+    //특정 음식점의 메뉴판 목록 조회하기
     @GetMapping("/restaurant/{restaurantId}/foods")
     public List<FoodDto> foodList (@PathVariable Long restaurantId){
         System.out.println("리스트조회"+restaurantId);

@@ -1,14 +1,17 @@
 package com.week5.delivery.domain;
 
+import com.week5.delivery.dto.FoodDto;
+import com.week5.delivery.dto.FoodOrderDto;
+import com.week5.delivery.dto.FoodOrderRequestDto;
+import com.week5.delivery.validator.OrderValidator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
+@Setter
 @Getter
 @Entity
 public class FoodOrder {
@@ -22,4 +25,15 @@ public class FoodOrder {
 
     private int quantity;
 
+    @ManyToOne
+    @JoinColumn(name = "ORDERS_ID")
+    private Orders orders;
+
+    public FoodOrder (FoodOrderRequestDto requestDto, Food food){
+        OrderValidator.checkFoodOrder(requestDto);
+
+        this.setQuantity(requestDto.getQuantity());
+        this.setName(food.getName());
+        this.setPrice(food.getPrice()*requestDto.getQuantity());
+    }
 }

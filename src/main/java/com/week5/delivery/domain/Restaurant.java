@@ -28,6 +28,9 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant")
     private List<Food> foods;
 
+    @OneToMany(mappedBy = "restaurant")
+    private List<Orders> orders;
+
     public Restaurant (RestaurantDto restaurantDto) {
 
         RestaurantValidator.restaurantValidator(restaurantDto);

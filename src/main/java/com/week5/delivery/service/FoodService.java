@@ -16,9 +16,10 @@ public class FoodService {
 
     private final FoodRepository foodRepository;
 
-//    public List<Food> CheckFood(Restaurant restaurant, List<FoodDto> foodDtos){
-//        foodRepository.findBy
-//    }
-//
+    public Food findFood (Long id){
+        return foodRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 메뉴입니다.")
+        );
+    }
 
 }

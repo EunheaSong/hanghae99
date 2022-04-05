@@ -47,8 +47,11 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurant/{restaurantId}/foods")
-    public List<Food> foodList (@PathVariable Long restaurantId){
+    public List<FoodDto> foodList (@PathVariable Long restaurantId){
         System.out.println("리스트조회"+restaurantId);
-        return restaurantService.findRestaurant(restaurantId).getFoods();
+        Restaurant restaurant = restaurantService.findRestaurant(restaurantId);
+        RestaurantDto restaurantDto = new RestaurantDto(restaurant, restaurant.getFoods());
+
+        return restaurantDto.getFoods();
     }
 }

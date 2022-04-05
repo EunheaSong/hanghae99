@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-
 public class Food {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +25,7 @@ public class Food {
     private int price;
 
     @ManyToOne
+    @JoinColumn(name = "RESTAURANT_ID")
     private Restaurant restaurant;
 
     public Food (FoodDto foodDto, Restaurant restaurant){

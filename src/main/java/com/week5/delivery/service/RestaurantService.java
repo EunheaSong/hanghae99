@@ -23,11 +23,12 @@ public class RestaurantService {
                 () -> new IllegalArgumentException("존재하지 않는 매장입니다")
         );
     }
-
+    @Transactional
     public void addFoods (List<FoodDto> foodDto,Restaurant restaurant){
         for (FoodDto f : foodDto){
             Food food = new Food(f,restaurant);
             restaurant.addFood(food);
+            foodRepository.save(food);
         }
         restaurantRepository.save(restaurant);
     }

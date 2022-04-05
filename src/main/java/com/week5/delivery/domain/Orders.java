@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Order {
+public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;

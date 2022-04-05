@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 
 @Data
 public class FoodDto {
+    private Long id;
 
     private String name;
 

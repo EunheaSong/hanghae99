@@ -3,16 +3,12 @@ package com.week5.delivery.service;
 import com.week5.delivery.domain.Food;
 import com.week5.delivery.domain.FoodOrder;
 import com.week5.delivery.domain.Orders;
-
 import com.week5.delivery.dto.FoodOrderRequestDto;
 import com.week5.delivery.dto.OrderDto;
-import com.week5.delivery.repository.FoodOrderRepository;
 import com.week5.delivery.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.internal.util.collections.Stack;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.Order;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +18,7 @@ import java.util.List;
 public class OrderService {
     private final FoodService foodService;
     private final OrderRepository orderRepository;
-    private final FoodOrderRepository foodOrderRepository;
+
 
     @Transactional
     public List<FoodOrder> addFoodOrder (List<FoodOrderRequestDto> requestDto){

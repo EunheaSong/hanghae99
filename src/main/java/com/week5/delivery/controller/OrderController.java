@@ -26,6 +26,7 @@ public class OrderController {
     private final OrderRepository orderRepository;
     private final FoodOrderRepository foodOrderRepository;
 
+    //주문서 저장
     @PostMapping("/order/request")
     public OrderDto setOrder (@RequestBody OrderRequestDto orderRequestDto){
         Restaurant restaurant = restaurantService.findRestaurant(orderRequestDto.getRestaurantId());
@@ -40,6 +41,7 @@ public class OrderController {
         return orderDto;
     }
 
+    //주문내역 불러오기
     @GetMapping("/orders")
     public List<OrderDto> getOrder(){
         return orderService.orderList();

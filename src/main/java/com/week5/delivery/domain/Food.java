@@ -17,7 +17,8 @@ public class Food {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private Long id; //메뉴의 primary key (기본키)
+
 
     private String name; //메뉴 이름
 

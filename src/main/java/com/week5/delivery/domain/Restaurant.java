@@ -17,10 +17,13 @@ public class Restaurant {
     @Id
     private Long id;
 
+    @Column(nullable = false)
     private String name; //매장이름
 
+    @Column(nullable = false)
     private int minOrderPrice; //최소 주문금액
 
+    @Column(nullable = false)
     private int deliveryFee; //배달료
 
     @OneToMany(mappedBy = "restaurant")  //음식 테이블과 매핑

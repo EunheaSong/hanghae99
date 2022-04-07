@@ -17,10 +17,13 @@ public class FoodOrder {
     @Id
     private Long id; //pimary key 기본키
 
+    @Column(nullable = false)
     private String name; //메뉴 이름
 
+    @Column(nullable = false)
     private int price; //메뉴의 총 금액 (메뉴 가격 * 선택 수랑)
 
+    @Column(nullable = false)
     private int quantity; //메뉴 수량 (한 메뉴를 몇개 주문했는지 대한 수량)
 
     @ManyToOne

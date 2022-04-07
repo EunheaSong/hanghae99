@@ -19,9 +19,10 @@ public class Food {
     @Id
     private Long id; //메뉴의 primary key (기본키)
 
-
+    @Column(nullable = false)
     private String name; //메뉴 이름
 
+    @Column(nullable = false)
     private int price; // 메뉴 가격
 
     @ManyToOne

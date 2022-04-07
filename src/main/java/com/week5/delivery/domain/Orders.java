@@ -18,8 +18,10 @@ public class Orders {
     @Id
     private Long id;
 
+    @Column(nullable = false)
     private String name; //음식점 이름.
 
+    @Column(nullable = false)
     private int totalPrice; //총 금액
 
     @ManyToOne
